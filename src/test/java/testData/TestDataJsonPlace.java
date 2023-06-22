@@ -2,6 +2,10 @@ package testData;
 
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+
 public class TestDataJsonPlace {
 
 
@@ -42,5 +46,30 @@ public class TestDataJsonPlace {
         reqBody.put("id",70);
 
         return reqBody;
+    }
+
+    public HashMap requestBodyOlusturMap(){
+
+        /*
+         {
+        "title":"Ahmet",
+        "body":"Merhaba",
+        "userId":10,
+        "id":70
+        }
+         */
+
+        HashMap <String ,Object> reqBody = new HashMap<>();
+
+        reqBody.put("title","Ahmet");
+        reqBody.put("body","Merhaba");
+        reqBody.put("userId",10);
+        reqBody.put("id",70);
+
+        return reqBody;
+
+
+
+
     }
 }
