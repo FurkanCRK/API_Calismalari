@@ -1,11 +1,17 @@
 package test;
 
 import baseUrl.JsonPlaceHolderBaseURL;
+import io.restassured.http.ContentType;
+import io.restassured.response.Response;
+import org.junit.Assert;
 import org.junit.Test;
 import testData.TestDataJsonPlace;
 
 import java.util.HashMap;
 import java.util.jar.JarEntry;
+
+import static io.restassured.RestAssured.given;
+import static org.junit.Assert.assertEquals;
 
 public class C22_Put_DeSerialization extends JsonPlaceHolderBaseURL {
     /*
@@ -44,9 +50,29 @@ public class C22_Put_DeSerialization extends JsonPlaceHolderBaseURL {
 
         HashMap <String, Object> reqBody = testDataJsonPlace.requestBodyOlusturMap();
 
+        // 2- Expected Data hazirla
 
-        //
+        HashMap <String, Object> expData = testDataJsonPlace.requestBodyOlusturMap();
 
+        // 3- Response'i kaydet
+
+        Response response = given()
+                                .spec(specJsonPlace)
+                                .contentType(ContentType.JSON)
+                            .when()
+                                .body(reqBody)
+                                .put("/{pp1}/{pp2}");
+
+        response.prettyPrint();
+
+        // 4- Assertion
+
+        HashMap <String,Object> respMap = response.as(HashMap.class);
+
+        assertEquals(expData.get("title"),respMap.get("title"));
+        assertEquals(expData.get("body"),respMap.get("body"));
+        assertEquals(expData.get("userId"),respMap.get("userId"));
+        assertEquals(expData.get("id"),respMap.get("id"));
 
 
 

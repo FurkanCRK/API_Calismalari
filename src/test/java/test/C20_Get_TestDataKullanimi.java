@@ -1,6 +1,6 @@
 package test;
 
-import baseUrl.DummyBaseUrl;
+import baseUrl.DummyBaseURL;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.json.JSONObject;
@@ -10,7 +10,7 @@ import testData.TestDataDummy;
 import static io.restassured.RestAssured.given;
 import static org.junit.Assert.assertEquals;
 
-public class C20_Get_TestDataKullanimi extends DummyBaseUrl {
+public class C20_Get_TestDataKullanimi extends DummyBaseURL {
 
     /*
     http://dummy.restapiexample.com/api/v1/employee/3
