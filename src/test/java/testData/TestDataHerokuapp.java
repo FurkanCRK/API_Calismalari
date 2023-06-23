@@ -2,6 +2,8 @@ package testData;
 
 import org.json.JSONObject;
 
+import java.util.HashMap;
+
 public class TestDataHerokuapp {
 
     public int basariliStatusCode = 200;
@@ -70,6 +72,101 @@ public class TestDataHerokuapp {
 
         return expData;
     }
+
+    /*
+    Request body
+        {
+            "firstname" : "Ahmet",
+            "lastname" : "Bulut",
+            "totalprice" : 500,
+            "depositpaid" : false,
+            "bookingdates" : {
+                                "checkin" : "2021-06-01",
+                                "checkout" : "2021-06-10"
+
+                             }
+             "additionalneeds" : "wi-fi"
+        }
+     */
+
+    public HashMap reqBookingdatesOlusturMap(){
+
+        HashMap<String,Object> bookingdates = new HashMap<>();
+
+        bookingdates.put("checkin","2021-06-01");
+        bookingdates.put("checkout","2021-06-10");
+
+        return bookingdates;
+    }
+
+    public HashMap reqBodyOlusturMap(){
+
+        HashMap<String,Object> booking = new HashMap<>();
+
+        booking.put("firstname","Ahmet");
+        booking.put("lastname","Bulut");
+        booking.put("totalprice",500.0);
+        booking.put("depositpaid",false);
+        booking.put("additionalneeds","wi-fi");
+        booking.put("bookingdates",reqBookingdatesOlusturMap());
+
+        return booking;
+    }
+
+    /*
+    Response Body // Expected Data
+
+        {
+            "bookingid" : 24,
+            "booking" : {
+                "firstname" : "Ahmet",
+                "lastname" : "Bulut",
+                "totalprice" : 500,
+                "depositpaid" : false,
+                "bookingdates" : {
+                                    "checkin" : "2021-06-01",
+                                    "checkout" : "2021-06-10"
+
+                                 }
+                 "additionalneeds" : "wi-fi"
+                        },
+        }
+     */
+
+    public HashMap expBookingdatesOlusturMap(){
+
+        HashMap<String,Object> bookingdates = new HashMap<>();
+
+        bookingdates.put("checkin","2021-06-01");
+        bookingdates.put("checkout","2021-06-10");
+
+        return bookingdates;
+    }
+
+    public HashMap expBookingOlusturMap(){
+
+        HashMap<String,Object> booking = new HashMap<>();
+
+        booking.put("firstname","Ahmet");
+        booking.put("lastname","Bulut");
+        booking.put("totalprice",500.0);
+        booking.put("depositpaid",false);
+        booking.put("additionalneeds","wi-fi");
+        booking.put("bookingdates",expBookingdatesOlusturMap());
+
+        return booking;
+    }
+
+    public HashMap expDataOlusturMap(){
+
+        HashMap<String,Object> expData = new HashMap<>();
+
+        expData.put("bookingid",24);
+        expData.put("booking",expBookingOlusturMap());
+
+        return expData;
+    }
+
 
 
 }
